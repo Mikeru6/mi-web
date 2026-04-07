@@ -1,0 +1,655 @@
+body {
+margin:0;
+font-family:'Poppins',sans-serif;
+background: radial-gradient(circle at top,#1a1a2e,#0f0c29);
+color:white;
+overflow-x:hidden;
+transition:0.4s;
+}
+
+body.dark { background:#0a0a0a; }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alineación vertical perfecta */
+    padding: 10px 30px;  /* Un poco más de aire a los lados */
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Asegura que siempre esté por encima */
+}
+
+nav ul {
+    display: flex;
+    align-items: center; /* Alinea los links y el carrito verticalmente */
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Aseguramos que el botón de Dark Mode también se alinee */
+#darkMode {
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav a {
+color:white;
+text-decoration:none;
+}
+
+.hero {
+text-align:center;
+padding:120px;
+background:url('img/anime-bg.jpg') center/cover;
+}
+
+.grid {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card {
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.card:hover {
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 0 20px #ff6ec7;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;        /* MISMO TAMAÑO */
+  object-fit: cover;    /* recorte profesional */
+  border-radius: 12px;
+  transition: 0.4s;
+}
+
+.card img:hover {
+  transform: scale(1.08);
+}
+
+img {
+width:100%;
+border-radius:10px;
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Asegúrate de que el modo dark cambie el fondo y el texto */
+body.dark {
+    background: #0a0a0a !important;
+    color: #ffffff;
+}
+
+/* Opcional: Si quieres que las cards también cambien en modo oscuro */
+body.dark .card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 110, 199, 0.2);
+}
+transition:0.4s;
+}
+
+img:hover {
+transform:scale(1.1);
+}
+
+button {
+background:#ff6ec7;
+border:none;
+padding:10px;
+color:white;
+cursor:pointer;
+border-radius:10px;
+}
+
+section {
+opacity:0;
+transform:translateY(50px);
+transition:0.6s;
+}
+
+section.visible {
+opacity:1;
+transform:translateY(0);
+}
+
+.cursor {
+width:25px;
+height:25px;
+background:url('img/cursor.png');
+position:absolute;
+pointer-events:none;
+z-index:9999;
+/* ... tus estilos ... */
+    pointer-events: none !important; /* El cursor no debe recibir clics */
+}
+
+canvas {
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* ================= RESPONSIVE PRO ================= */
+
+/* MÓVILES */
+@media (max-width: 768px){
+
+nav {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.menu-toggle {
+display: block;
+font-size: 24px;
+cursor: pointer;
+}
+
+nav ul {
+display: none;
+flex-direction: column;
+width: 100%;
+padding: 10px 0;
+}
+
+nav ul.active {
+display: flex;
+}
+
+.hero {
+padding: 60px 20px;
+}
+
+.hero h2 {
+font-size: 22px;
+}
+
+.grid {
+grid-template-columns: 1fr;
+padding: 15px;
+}
+
+.card {
+padding: 15px;
+}
+
+form input,
+form textarea {
+width: 100%;
+margin-bottom: 10px;
+}
+
+/* carrito */
+.carrito {
+padding: 10px;
+}
+}
+
+/* TABLETS */
+@media (min-width: 769px) and (max-width: 1024px){
+
+.grid {
+grid-template-columns: repeat(2,1fr);
+}
+
+.hero {
+padding: 80px 20px;
+}
+}
+
+/* OCULTAR BOTÓN EN PC */
+.menu-toggle {
+display: none;
+}
+
+button {
+min-height: 44px;
+}
+
+a {
+padding: 8px;
+display: inline-block;
+}
+
+/* ===== SLIDER COSPLAY ===== */
+
+/* ===== SLIDER PRO CON FONDO DIFUMINADO (CORREGIDO) ===== */
+
+.slider {
+  position: relative;
+  width: 90%;
+  height: 450px; /* Un poco más alto para que luzca */
+  margin: 20px auto 50px auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra para que no se vea simple */
+  /* Forzamos visibilidad inicial si el observer falla */
+  opacity: 1 !important; 
+  transform: translateY(0) !important;
+}
+
+.slide {
+  position: absolute;
+  inset: 0; /* Ocupa todo el espacio del padre */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2; /* La activa se pone encima */
+}
+
+/* IMAGEN PRINCIPAL (La que se ve nítida) */
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* No recorta la foto del cosplay */
+  position: relative;
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* FONDO DIFUMINADO (Efecto Bonito) */
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: -20px; /* Un poco más grande para cubrir bordes al difuminar */
+  background-size: cover;
+  background-position: center;
+  filter: blur(25px); /* El difuminado */
+  transform: scale(1.1);
+  opacity: 0.5; /* Transparencia del fondo */
+  z-index: 5;
+}
+
+/* ASIGNAR IMAGEN A CADA FONDO DIFUMINADO (CORRECTO: 1 al 10) */
+/* Asegúrate de que estas rutas EXISTEN en tu carpeta img */
+.slide:nth-child(1)::before { background-image: url('img/cosplay1.jpg'); }
+.slide:nth-child(2)::before { background-image: url('img/cosplay2.jpg'); }
+.slide:nth-child(3)::before { background-image: url('img/cosplay3.jpg'); }
+.slide:nth-child(4)::before { background-image: url('img/cosplay4.jpg'); }
+.slide:nth-child(5)::before { background-image: url('img/cosplay5.jpg'); }
+.slide:nth-child(6)::before { background-image: url('img/cosplay6.jpg'); }
+.slide:nth-child(7)::before { background-image: url('img/cosplay7.jpg'); }
+.slide:nth-child(8)::before { background-image: url('img/cosplay8.jpg'); }
+.slide:nth-child(9)::before { background-image: url('img/cosplay9.jpg'); }
+.slide:nth-child(10)::before { background-image: url('img/cosplay10.jpg'); }
+
+/* Ajuste Responsive rápido para el slider */
+@media (max-width: 768px) {
+  .slider {
+    height: 280px;
+    width: 95%;
+  }
+}
+
+/* Asegúrate de que las secciones sean visibles para el observer de JS */
+section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 0.6s;
+  overflow: hidden; /* Evita scrolls raros */
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animación (10 imágenes → 4s cada una = 40s total) */
+@keyframes slide {
+  0% { transform: translateX(0%); }
+  20% { transform: translateX(0%); }
+
+  25% { transform: translateX(-100%); }
+  45% { transform: translateX(-100%); }
+
+  50% { transform: translateX(-200%); }
+  70% { transform: translateX(-200%); }
+
+  75% { transform: translateX(-300%); }
+  95% { transform: translateX(-300%); }
+
+  100% { transform: translateX(0%); }
+}
+
+@media (max-width:768px){
+  .slides img {
+    height: 220px;
+  }
+}
+
+/* PRODUCTOS IMAGENES PRO (FINAL LIMPIO) */
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 12px;
+  transition: 0.4s;
+}
+
+.card img:hover {
+  transform: scale(1.05);
+}
+
+/* Contenedor principal de la sección */
+.contacto-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Para que ocupe casi toda la pantalla */
+  padding: 40px 20px;
+}
+
+/* La caja del formulario (Glassmorphism) */
+.form-container {
+  background: rgba(255, 255, 255, 0.05); /* Fondo muy suave */
+  backdrop-filter: blur(15px); /* Desenfoque de fondo */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 50px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px; /* Ancho máximo para que no se estire demasiado en PC */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.form-container h2 {
+  color: #ff6ec7; /* Rosa característico de tu tienda */
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.form-container p {
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+/* Estilo de los inputs y el textarea */
+.contacto-form .input-group {
+  margin-bottom: 20px;
+}
+
+.contacto-form input, 
+.contacto-form textarea {
+  width: 100%;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: 0.3s;
+  outline: none;
+}
+
+/* Efecto al hacer clic en un cuadro de texto */
+.contacto-form input:focus, 
+.contacto-form textarea:focus {
+  border-color: #ff6ec7;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(255, 110, 199, 0.3);
+}
+
+/* Botón de enviar más grande y llamativo */
+.btn-enviar {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(45deg, #ff6ec7, #8e44ad);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s transform ease;
+}
+
+.btn-enviar:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+/* Ajuste para móviles */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 25px;
+  }
+}
+
+/* ================= CSS ESPECÍFICO PARA SOBRE NOSOTROS ================= */
+
+/* Aplica centrado y espaciado solo al body con la clase 'pagina-sobre' */
+.pagina-sobre .contenido {
+    max-width: 800px;
+    margin: 40px auto; /* Centra el bloque en PC */
+    padding: 20px;
+    line-height: 1.6; /* Mejora la lectura */
+    text-align: center; /* Centra los títulos */
+}
+
+/* Estilos para que los párrafos se lean bien centrados */
+.pagina-sobre .contenido p {
+    text-align: left; /* El texto largo se lee mejor alineado a la izquierda */
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* Estilos para la lista de valores */
+.pagina-sobre .contenido ul li {
+    background: rgba(255, 255, 255, 0.05);
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* ===== ESTILOS DE LA GALERÍA (CSS GRID) ===== */
+
+.galeria-tienda {
+    margin-top: 60px; /* Separa la galería del texto superior */
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.galeria-tienda h2 {
+    color: #ff6ec7; /* Rosa característico */
+    margin-bottom: 10px;
+}
+
+.galeria-grid {
+    display: grid;
+    /* Crea un grid automático que se ajusta: min 250px por foto, rellena el espacio */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px; /* Espacio entre fotos */
+    margin-top: 30px;
+}
+
+.galeria-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s transform ease;
+}
+
+.galeria-item:hover {
+    transform: scale(1.03); /* Efecto zoom suave al pasar el ratón */
+    box-shadow: 0 8px 25px rgba(255, 110, 199, 0.3); /* Sombra rosa */
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 250px; /* Altura fija para que todas las fotos sean iguales */
+    object-fit: cover; /* Recorta la imagen para llenar el recuadro sin deformar */
+    border-radius: 15px;
+}
+
+/* Texto que aparece sobre la foto al hacer hover */
+.galeria-item span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    padding: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: left;
+    opacity: 0; /* Oculto por defecto */
+    transition: 0.3s opacity ease;
+}
+
+.galeria-item:hover span {
+    opacity: 1; /* Muestra el texto al hacer hover */
+}
+
+/* Ajuste Responsive para la galería en móviles */
+@media (max-width: 768px) {
+    .galeria-grid {
+        grid-template-columns: 1fr; /* Una sola foto por fila en móviles */
+    }
+    .galeria-item img {
+        height: 200px; /* Fotos un poco más bajas en móvil */
+    }
+}
+
+/* Contenedor que agrupa logo y nombre */
+.logo-container {
+    display: flex;
+    align-items: center; /* Centra verticalmente el logo con el texto */
+    gap: 12px;           /* Espacio entre el logo y el nombre */
+    text-decoration: none;
+    color: white;
+}
+
+/* Estilo específico para la imagen del logo */
+.nav-logo {
+    height: 80px;        /* Ajusta el tamaño a tu gusto */
+    width: auto;         /* Mantiene la proporción */
+    border-radius: 5px;  /* Opcional: redondea un poco las esquinas */
+    transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el ratón sobre el logo */
+.logo-container:hover .nav-logo {
+    transform: rotate(5deg) scale(1.1);
+}
+
+/* Ajuste para que el h1 no tenga margenes raros al estar en el flex */
+.logo-container h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    white-space: nowrap; /* Evita que el nombre se parta en dos líneas */
+}
+
+/* Ajuste responsive: Logo más pequeño en móviles */
+@media (max-width: 768px) {
+    .nav-logo {
+        height: 35px;
+    }
+    .logo-container h1 {
+        font-size: 1.2rem;
+    }
+}
+
+.btn-cta {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 15px 40px;
+    background: linear-gradient(45deg, #ff6ec7, #8e44ad);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px; /* Estilo píldora, más moderno */
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(255, 110, 199, 0.4);
+    transition: 0.3s;
+}
+
+.btn-cta:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 110, 199, 0.6);
+}
+
+
+
+/* Asegúrate de que el contenedor del logo no limite el tamaño */
+.logo-container {
+    text-decoration: none;
+    color: inherit; /* Mantiene el color del texto original */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre la imagen del logo y el texto */
+}
+
+
+
+/* Ajusta el contenedor para que la imagen y el texto se alineen */
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit; /* Mantiene el color que ya tengas configurado */
+}
+
+/* Tamaño del logo (imagen) al lado del texto */
+.nav-logo {
+    height: 120px; /* Ajusta según el tamaño de tu imagen */
+    width: auto;
+    margin-right: 15px;
+}
+
+.card a {
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: block;        /* Hace que el enlace ocupe el ancho necesario */
+    width: 100%;
+}
+
+.btn-card {
+    width: 100%;           /* Hace que el botón ocupe todo el ancho de la card si quieres */
+    transition: 0.3s;
+}
+
+.brand-name {
+    /* Este tamaño es similar al de tu primera imagen (Index) */
+    font-size: 1.5rem !important; 
+    font-weight: 700 !important;
+    color: white !important;
+    text-transform: none !important; /* Evita que se ponga todo en mayúsculas */
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+/* Ajuste del contenedor para que no haya símbolos raros */
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 12px;
+}

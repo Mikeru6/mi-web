@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | CosplayStore</title>
+    <meta name="description" content="Contacta con nuestra tienda cosplay en Tenerife.">
+    <meta name="keywords" content="cosplay Tenerife, pelucas cosplay, materiales cosplay, tienda cosplay, maquillaje cosplay, herramientas cosplay">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo-container">
+    <img src="img/logo.png" alt="Logo MikeruCosplayStore" class="nav-logo">
+    <span class="brand-name">MikeruCosplayStore</span>
+</a>
+
+    <ul>
+      <div class="menu-toggle">☰</div>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li>🛒 <span id="cart-count">0</span></li>
+    </ul>
+
+    <button id="darkMode">🌙</button>
+  </nav>
+</header>
+
+<section class="contacto-section visible">
+    <div class="form-container">
+        <h1>Contacto</h1>
+        <p>¿Tienes dudas sobre materiales o pedidos? Escríbenos y te ayudaremos a subir de nivel tu cosplay.</p>
+        
+        <form class="contacto-form">
+            <div class="input-group">
+                <input type="text" placeholder="Nombre completo" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="email" placeholder="Correo electrónico" required>
+            </div>
+            
+            <div class="input-group">
+                <textarea placeholder="Cuéntanos qué necesitas..." rows="6" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+        </form>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 CosplayStore</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

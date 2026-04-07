@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Productos Cosplay | CosplayStore</title>
+<meta name="description" content="Pelucas, herramientas y materiales cosplay en Tenerife.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<meta name="keywords" content="cosplay Tenerife, pelucas cosplay, materiales cosplay, tienda cosplay, maquillaje cosplay, herramientas cosplay">
+
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo-container">
+    <img src="img/logo.png" alt="Logo MikeruCosplayStore" class="nav-logo">
+    <span class="brand-name">MikeruCosplayStore</span>
+</a>
+
+    <ul>
+      <div class="menu-toggle">☰</div>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li>🛒 <span id="cart-count">0</span></li>
+    </ul>
+
+    <button id="darkMode">🌙</button>
+  </nav>
+</header>
+
+<section class="grid">
+
+<div class="card">
+<img src="img/pelucaproductos.jpg" alt="Peluca cosplay profesional de Marin Kitagawa de sono bisque wall do">
+<h3>Peluca Anime</h3>
+<p>Pelucas resistentes al calor perfectas para estilizado.</p>
+<button onclick="addToCart('Peluca')">Añadir</button>
+</div>
+
+<div class="card">
+<img src="img/gomaeva.jpg" alt="Material goma eva cosplay de varias densidades">
+<h3>Goma EVA</h3>
+<p>Material ideal para armaduras y props.</p>
+<button onclick="addToCart('Goma EVA')">Añadir</button>
+</div>
+
+<div class="card">
+  <img src="img/aerografo.jpg" alt="Aerógrafo profesional cosplay">
+  <h3>Aerógrafo Profesional</h3>
+  <p>Herramienta ideal para degradados y acabados de pintura avanzados.</p>
+  <button onclick="addToCart('Aerógrafo')">Añadir</button>
+</div>
+
+<div class="card">
+  <img src="img/dremel.jpg" alt="Dremel multiherramienta para cosplay">
+  <h3>Dremel (Rotativa)</h3>
+  <p>Imprescindible para lijar, cortar y detallar piezas de Goma EVA o Worbla.</p>
+  <button onclick="addToCart('Dremel')">Añadir</button>
+</div>
+
+</section>
+
+<section class="carrito">
+<h2>Carrito</h2>
+<ul id="cart"></ul>
+</section>
+
+<script src="script.js"></script>
+<script src="carrito.js"></script>
+
+<main>
+    <section class="grid">
+        <div class="card">
+            <img src="img/pelucaproductos.jpg" alt="...">
+            <h3>Peluca Anime</h3>
+            <p>...</p>
+            <button onclick="addToCart('Peluca')">Añadir</button>
+        </div>
+        </section> </main>
+
+<footer>
+    <p>© 2026 MikeruCosplayStore</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="carrito.js"></script>
+
+</body>
+</html>
